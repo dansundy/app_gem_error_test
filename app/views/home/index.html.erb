@@ -24,10 +24,12 @@
           });
 
           var fetchProducts = function() {
-            var headers = new Headers({ "Authorization": "Bearer " + window.sessionToken + 'x' }); // Just added an 'x' to invalidate the token
+            // Just added an 'x' to the following line invalidate the token.
+            // But this will happen with any invalid token. An expired token will cause the same issue.
+            var headers = new Headers({ "Authorization": "Bearer " + window.sessionToken + 'x' }); 
+            
             return fetch("/products", { headers })
               .then(response => {
-
                 if (!response.ok) {
                   document.getElementById("products").innerHTML = "<p>Error response status: " + response.status + "</p>"
                   document.getElementById("products").insertAdjacentHTML('beforeend', '<p>This error should be a 400 level error.</p>')

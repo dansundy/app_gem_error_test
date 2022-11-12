@@ -34,8 +34,10 @@ rails server
 
 ## Explaination
 
-The app will attempt to fetch a list of products in the `products_controller` that inherit from the `authenticated_controller`. But in `app/views/home/index.html.erb` I am purposely using an invalid token. On the server side, in `authenticated_controller` I am trying to rescue this error and return a `400` error. Eventually, this would be a `401` error that I add a re-authentication header to. Unfortunately, I can't because it gets overridden by a server (`500`) error.
+The app will attempt to fetch a list of products in the `ProductsController` that inherit from the `AuthenticatedController`. In `app/views/home/index.html.erb` I am purposely using an invalid token.
+
+On the server side, in `AuthenticatedController` I am trying to rescue this error and return a `400` error. Eventually, this would be a `401` error to which I would add a re-authentication header. Unfortunately, I can't because it gets overridden by a server (`500`) error (see the error mentioned above for a full stack trace). I have tried rescuing from the `ApplicationController` without luck as well.
 
 ## Notes
 
-I've noticed that sometimes there is another error that happens even before the fetch. If this happens, just refresh.
+I've noticed that sometimes there is another error that happens on the client side even before the fetch. If this happens, just refresh.

@@ -24,10 +24,20 @@
           });
 
           var fetchProducts = function() {
-            var headers = new Headers({ "Authorization": "Bearer " + window.sessionToken });
+            var headers = new Headers({ "Authorization": "Bearer " + window.sessionToken + 'x' }); // Just added an 'x' to invalidate the token
             return fetch("/products", { headers })
-              .then(response => response.json())
+              .then(response => {
+
+                if (!response.ok) {
+                  document.getElementById("products").innerHTML = "<p>Error response status: " + response.status + "</p>"
+                  document.getElementById("products").insertAdjacentHTML('beforeend', '<p>This error should be a 400 level error.</p>')
+
+                  return false
+                }
+
+                return response.json()})
               .then(data => {
+                if (!data) return
                 var products = data.products;
 
                 if (products === undefined || products.length == 0) {

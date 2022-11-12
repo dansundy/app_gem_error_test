@@ -18,8 +18,18 @@ SHOPIFY_API_KEY=<Your Shopify API key>
 SHOPIFY_API_SECRET=<Your Shopify API secret>
 ```
 
-4. Run the migrations with `rails db:migrate`
-5. Run the app: `rails server`
+4. Run the migrations
+
+```
+rails db:migrate
+```
+
+5. Run the app:
+
+```
+rails server
+```
+
 6. Go to `http://127.0.0.1:3000`
 
 ## Explaination

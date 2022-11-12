@@ -24,7 +24,7 @@ SHOPIFY_API_SECRET=<Your Shopify API secret>
 rails db:migrate
 ```
 
-5. Run the app:
+5. Run the app
 
 ```
 rails server
